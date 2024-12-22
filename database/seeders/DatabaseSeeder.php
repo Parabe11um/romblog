@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Post::factory()->count(50)->create();
+//        \App\Models\Post::factory()->count(50)->create();
 
         /** @var User  $adminUser */
-//        $adminUser = User::factory()->create([
-//            'email' => 'admin@admin.com',
-//            'name' => 'Admin',
-//            'password' => bcrypt('admin123'),
-//        ]);
-//
-//        $adminRole = Role::create(['name' => 'admin']);
-//        $adminUser->assignRole($adminRole);
+        $adminUser = User::factory()->create([
+            'email' => 'admin@admin.com',
+            'name' => 'Admin',
+            'password' => bcrypt('admin123'),
+        ]);
+
+        $adminRole = Role::create(['name' => 'admin']);
+        $adminUser->assignRole($adminRole);
 
 //        User::factory()->create([
 //            'name' => 'Test User',
