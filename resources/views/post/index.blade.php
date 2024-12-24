@@ -1,5 +1,5 @@
-<x-app-layout :meta-title="'Romblog ' . $category->title"
-              :meta-description="'Статьи отфильтрованные по категории ' . $category->title">
+<x-app-layout :meta-title="'Romblog - статьи по категории ' . $category->title"
+              :meta-description="'Статьи по категории ' . $category->title">
     <div class="container mx-auto flex flex-wrap py-6">
 
         <!-- Posts Section -->

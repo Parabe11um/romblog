@@ -25,7 +25,7 @@ class PostController extends Controller
             ->limit(1)
             ->first();
 
-        // Show the most popular 3 posts based on upvotes
+        // Show the most popular 10 posts based on upvotes
         $popularPosts = Post::query()
             ->leftJoin('upvote_downvotes', 'posts.id', '=', 'upvote_downvotes.post_id')
             ->select('posts.*', DB::raw('COUNT(upvote_downvotes.id) as upvote_count'))
@@ -50,7 +50,7 @@ class PostController extends Controller
                 'posts.meta_title',
                 'posts.meta_description',
             ])
-            ->limit(5)
+            ->limit(10)
             ->get();
 
         // If authorized - Show recommended posts based on user upvotes
