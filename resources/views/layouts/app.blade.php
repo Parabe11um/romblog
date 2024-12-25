@@ -115,7 +115,7 @@
 
 <footer class="w-full border-t bg-white pb-12">
     <div class="w-full container mx-auto flex flex-col items-center">
-        <div class="uppercase py-6">&copy;romblog.ru</div>
+        <div class="uppercase py-6">&copy;Fitlife-blog.ru</div>
     </div>
 </footer>
 
