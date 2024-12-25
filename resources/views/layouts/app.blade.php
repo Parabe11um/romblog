@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $metaTitle ?: 'Rombloog' }}</title>
-    <meta name="author" content="Rombloog">
+    <title>{{ $metaTitle ?: 'fitlife-blog.ru' }}</title>
+    <meta name="author" content="fitlife-blog.ru">
     <meta name="description" content="{{ $metaDescription }}">
 
     <style>
@@ -21,8 +21,8 @@
 <!-- Text Header -->
 <header class="w-full container mx-auto">
     <div class="flex flex-col items-center py-12">
-        <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="{{route('home')}}">
-            RomBlog
+        <a class="hover:shadow-md transition-all rounded-md font-bold border-gray-100 shadow-lg p-4 text-gray-800 uppercase hover:text-gray-700 text-7xl" href="{{route('home')}}">
+           <span class="text-green-500 font-light">fitlife-blog</span>
         </a>
         <p class="text-lg text-gray-600">
             {{ \App\Models\TextWidget::getTitle('header') }}

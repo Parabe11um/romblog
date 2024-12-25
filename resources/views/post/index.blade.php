@@ -1,4 +1,4 @@
-<x-app-layout :meta-title="'Romblog - статьи по категории ' . $category->title"
+<x-app-layout :meta-title="'Fitlife-blog.ru - статьи по категории ' . $category->title"
               :meta-description="'Статьи по категории ' . $category->title">
     <div class="container mx-auto flex flex-wrap py-6">
 

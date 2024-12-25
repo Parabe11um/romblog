@@ -1,5 +1,5 @@
-<x-app-layout meta-title="RomBlog - блог о здоровой жизни, фитнесе и спорте"
-              meta-description="RomBlog - блог о здоровой жизни, фитнесе и спорте">
+<x-app-layout meta-title="Fitlife-blog.ru - блог о здоровой жизни, фитнесе и спорте"
+              meta-description="Fitlife-blog.ru - блог о здоровой жизни, фитнесе и спорте">
     <div class="container mx-auto py-6">
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">

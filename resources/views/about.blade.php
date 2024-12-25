@@ -1,4 +1,5 @@
-<x-app-layout meta-title="TheCodeholic Blog - About us">
+<x-app-layout meta-title="Fitlife-blog.ru - блог о здоровой жизни, фитнесе и спорте"
+              meta-description="Fitlife-blog.ru - блог о здоровой жизни, фитнесе и спорте">
 
     <div class="container mx-auto flex flex-wrap py-6">
 
