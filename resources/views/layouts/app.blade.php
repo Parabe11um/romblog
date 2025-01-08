@@ -38,22 +38,22 @@
             class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
             @click="open = !open"
         >
-            Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+            Меню <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
         </a>
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
         <div
             class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-between text-sm font-bold uppercase mt-0 px-6 py-2">
-            <div>
+            <div class="flex max-sm:flex-col">
                 <a href="{{route('home')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">Главная</a>
                 @foreach($categories as $category)
                     <a href="{{route('by-category', $category)}}"
-                       class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">{{$category->title}}</a>
+                       class="hover:bg-blue-600 hover:text-white rounded sm:columns-[1-cols-sm] py-2 px-4 mx-2">{{$category->title}}</a>
                 @endforeach
                 <a href="{{route('about-us')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">О блоге</a>
             </div>
 
-            <div class="flex items-center">
+            <div class="flex items-center max-sm:flex-col">
                 <form method="get" action="{{route('search')}}">
                     <input name="q" value="{{request()->get('q')}}"
                            class="block w-full rounded-md border-0 px-3.5 py-2 t0ext-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 font-medium"

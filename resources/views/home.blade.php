@@ -47,17 +47,19 @@
         </div>
 
         <!-- Recommended posts -->
-        <div class="mb-8">
-            <h2 class="text-lg sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
-                Рекомендуемые статьи
-            </h2>
+        @if(count($recommendedPosts) > 0)
+            <div class="mb-8">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
+                    Рекомендуемые статьи
+                </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                @foreach($recommendedPosts as $post)
-                    <x-post-item :post="$post" :show-author="false"/>
-                @endforeach
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    @foreach($recommendedPosts as $post)
+                        <x-post-item :post="$post" :show-author="false"/>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
         <!-- Latest Categories -->
         @foreach($categories as $category)
