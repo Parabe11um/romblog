@@ -21,7 +21,7 @@
 <!-- Text Header -->
 <header class="w-full container mx-auto">
     <div class="flex flex-col items-center py-12">
-        <a class="hover:shadow-md transition-all rounded-md font-bold border-gray-100 shadow-lg p-4 text-gray-800 uppercase hover:text-gray-700 text-7xl" href="{{route('home')}}">
+        <a class="hover:shadow-md transition-all text-center rounded-md font-bold border-gray-100 shadow-lg p-4 text-gray-800 uppercase hover:text-gray-700 text-7xl" href="{{route('home')}}">
            <span class="text-green-500 font-light">fitlife-blog</span>
         </a>
         <p class="text-lg text-gray-600">

@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <!-- Latest Post -->
             <div class="col-span-2">
-                <h2 class="text-lg sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
+                <h2 class="text-lg max-sm:text-center sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
                     Последняя статья
                 </h2>
 
@@ -16,15 +16,15 @@
 
             <!-- Popular 3 post -->
             <div>
-                <h2 class="text-lg sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
+                <h2 class="text-lg max-sm:text-center sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
                     Популярные статьи
                 </h2>
                 @foreach($popularPosts as $post)
                     <div class="grid grid-cols-4 gap-2 mb-4">
-                        <a href="{{route('view', $post)}}" class="pt-1">
+                        <a class="max-sm:hidden" href="{{route('view', $post)}}" class="pt-1">
                             <img src="{{$post->getThumbnail()}}" alt="{{$post->title}}"/>
                         </a>
-                        <div class="col-span-3">
+                        <div class="col-span-3 max-sm:p-5 max-sm:col-span-8">
                             <a href="{{route('view', $post)}}">
                                 <h3 class="text-sm uppercase whitespace-nowrap truncate">{{$post->title}}</h3>
                             </a>
@@ -49,7 +49,7 @@
         <!-- Recommended posts -->
         @if(count($recommendedPosts) > 0)
             <div class="mb-8">
-                <h2 class="text-lg sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
+                <h2 class="text-lg max-sm:text-center sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
                     Рекомендуемые статьи
                 </h2>
 
@@ -64,7 +64,7 @@
         <!-- Latest Categories -->
         @foreach($categories as $category)
             <div>
-                <h2 class="text-lg sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
+                <h2 class="text-lg max-sm:text-center sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
                     Категория "{{$category->title}}"
                     <a href="{{route('by-category', $category)}}">
                         <i class="fas fa-arrow-right"></i>
