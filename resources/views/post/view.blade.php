@@ -24,7 +24,7 @@
                         <p href="#" class="text-sm pb-8">
                             <a href="#" class="font-semibold hover:text-gray-800">{{$post->user->name}}</a>,
                             Опубликовано
-                            {{$post->getFormattedDate()}} | {{ $post->human_read_time }}
+                            {{$post->getFormattedDate()}}
                         </p>
                         <div>
                             {!! $post->body !!}
