@@ -16,7 +16,7 @@
         </a>
 
         <p href="#" class="text-sm pb-3">
-            Опубликовано {{$post->getFormattedDate()}} | {{ $post->human_read_time }}
+            Опубликовано {{$post->getFormattedDate()}}
         </p>
 
         <a href="{{route('view', $post)}}" class="pb-6">
