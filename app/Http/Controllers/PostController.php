@@ -50,7 +50,7 @@ class PostController extends Controller
                 'posts.meta_title',
                 'posts.meta_description',
             ])
-            ->limit(10)
+            ->limit(6)
             ->get();
 
         // If authorized - Show recommended posts based on user upvotes
