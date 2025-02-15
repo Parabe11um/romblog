@@ -22,7 +22,6 @@
                             {{$post->title}}
                         </h1>
                         <p href="#" class="text-sm pb-8">
-                            <a href="#" class="font-semibold hover:text-gray-800">{{$post->user->name}}</a>,
                             Опубликовано
                             {{$post->getFormattedDate()}}
                         </p>
