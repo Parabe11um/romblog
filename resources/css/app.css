@@ -13,3 +13,17 @@ pre{
     border-radius: 0.5rem;
     margin-bottom: 1rem;
 }
+
+body{
+    font-family: 'Arsenal', sans-serif!important;
+}
+
+h2{
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
+h3{
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+}
