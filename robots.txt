@@ -6,4 +6,4 @@ Disallow: /cart
 Disallow: /checkout
 Disallow: /search
 
-Sitemap: https://skilltogrow.ru/sitemap.xml
+Sitemap: https://fitlife-blog.ru/sitemap.xml
