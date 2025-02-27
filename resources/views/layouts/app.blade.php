@@ -19,10 +19,10 @@
 
 
 <!-- Text Header -->
-<header class="max-sm:hidden w-full container mx-auto">
+<header class="w-full container mx-auto">
     <div class="flex flex-col items-center py-12">
-        <a class="text-center rounded-md font-bold border-gray-100 p-4 text-gray-800 uppercase hover:text-gray-700 text-7xl" href="{{route('home')}}">
-           <span class="font-light">fitlife-blog</span>
+        <a class="hover:shadow-md transition-all text-center rounded-md font-bold border-gray-100 shadow-lg p-4 text-gray-800 uppercase hover:text-gray-700 text-7xl" href="{{route('home')}}">
+            <span class="text-green-500 font-light">fitlife-blog</span>
         </a>
         <p class="text-lg text-gray-600">
             {{ \App\Models\TextWidget::getTitle('header') }}
@@ -53,14 +53,14 @@
                 <a href="{{route('about-us')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">О блоге</a>
             </div>
 
-            <div class="flex max-sm:mt-5 items-center max-sm:flex-col">
+            <div class="flex items-center max-sm:flex-col">
                 <form method="get" action="{{route('search')}}">
                     <input name="q" value="{{request()->get('q')}}"
                            class="block w-full rounded-md border-0 px-3.5 py-2 t0ext-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 font-medium"
                            placeholder="Поиск"/>
                 </form>
                 @auth
-                    <div class="flex max-sm:mt-5 sm:items-center sm:ml-6">
+                    <div class="flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
@@ -120,5 +120,22 @@
 </footer>
 
 @livewireScripts
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(99363222, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+    });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/99363222" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 </html>
