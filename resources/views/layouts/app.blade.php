@@ -19,7 +19,7 @@
 
 
 <!-- Text Header -->
-<header class="w-full container mx-auto">
+<header class="max-sm:hidden w-full container mx-auto">
     <div class="flex flex-col items-center py-12">
         <a class="hover:shadow-md transition-all text-center rounded-md font-bold border-gray-100 shadow-lg p-4 text-gray-800 uppercase hover:text-gray-700 text-7xl" href="{{route('home')}}">
            <span class="text-green-500 font-light">fitlife-blog</span>
@@ -53,14 +53,14 @@
                 <a href="{{route('about-us')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">О блоге</a>
             </div>
 
-            <div class="flex items-center max-sm:flex-col">
+            <div class="flex mt-5 items-center max-sm:flex-col">
                 <form method="get" action="{{route('search')}}">
                     <input name="q" value="{{request()->get('q')}}"
                            class="block w-full rounded-md border-0 px-3.5 py-2 t0ext-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 font-medium"
                            placeholder="Поиск"/>
                 </form>
                 @auth
-                    <div class="flex sm:items-center sm:ml-6">
+                    <div class="flex mt-5 sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
