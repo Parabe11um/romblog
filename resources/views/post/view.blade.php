@@ -1,10 +1,8 @@
 <x-app-layout :meta-title="$post->meta_title ?: $post->title"
               :meta-description="$post->meta_description ?: $post->title">
-    <div class="flex">
+    <div class="flex max-sm:flex-col">
         <!-- Post Section -->
-        <section class="w-full flex flex-col items-center px-3">
-            <section class="w-full flex flex-col px-3">
-
+        <section class="w-full md:w-2/3 flex flex-col px-3">
                 <article class="flex flex-col shadow my-4">
                     <!-- Article Image -->
                     <a href="#" class="hover:opacity-75">
@@ -61,6 +59,6 @@
 
                 <livewire:comments :post="$post"/>
             </section>
-        </section>
+        <x-sidebar/>
     </div>
 </x-app-layout>
