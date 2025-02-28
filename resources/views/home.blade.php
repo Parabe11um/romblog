@@ -6,7 +6,7 @@
             <!-- Latest Post -->
             <div class="col-span-2">
                 <h2 class="text-lg max-sm:text-center sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
-                    Последняя статья
+                    Недавняя статья
                 </h2>
 
                 @if ($latestPost)
@@ -14,8 +14,8 @@
                 @endif
             </div>
 
-            <!-- Popular 3 post -->
-            <div>
+            <!-- Popular posts -->
+            <div class="max-sm:hidden">
                 <h2 class="text-lg max-sm:text-center sm:text-xl font-bold text-blue-500 uppercase pb-1 border-b-2 border-blue-500 mb-3">
                     Популярные статьи
                 </h2>
