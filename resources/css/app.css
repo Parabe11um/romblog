@@ -18,12 +18,12 @@ body{
     font-family: 'Arsenal', sans-serif!important;
 }
 
-h2{
+.post-item h2{
     font-size: 2rem;
     margin: 2rem 0;
 }
 
-h3{
+.post-item h3{
     font-size: 1.5rem;
     margin: 1.5rem 0;
 }

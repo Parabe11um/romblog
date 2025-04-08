@@ -1,4 +1,4 @@
-<article class="bg-white    flex flex-col shadow my-4">
+<article class="bg-white post-item flex flex-col shadow my-4">
     <!-- Article Image -->
     <a href="{{route('view', $post)}}" class="hover:opacity-75">
         <img src="{{$post->getThumbnail()}}" alt="{{$post->title}}" class="aspect-[4/3] p-3 w-full object-cover">
