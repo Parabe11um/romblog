@@ -3,7 +3,7 @@
     <div class="flex max-sm:flex-col">
         <!-- Post Section -->
         <section class="w-full md:w-2/3 flex flex-col px-3">
-                <article class="flex flex-col shadow my-4">
+                <article class="flex post-item flex-col shadow my-4">
                     <!-- Article Image -->
                     <a href="#" class="hover:opacity-75">
                         <img class="w-full" src="{{$post->getThumbnail()}}">
