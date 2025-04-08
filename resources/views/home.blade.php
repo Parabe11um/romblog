@@ -26,7 +26,7 @@
                         </a>
                         <div class="col-span-3 max-sm:p-5 max-sm:col-span-8">
                             <a href="{{route('view', $post)}}">
-                                <h3 class="text-sm uppercase whitespace-nowrap truncate">{{$post->title}}</h3>
+                                <h3 class="m-0 text-sm uppercase whitespace-nowrap truncate">{{$post->title}}</h3>
                             </a>
                             <div class="flex gap-4 mb-2">
                                 @foreach($post->categories as $category)
