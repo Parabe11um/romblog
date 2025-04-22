@@ -71,7 +71,7 @@
 
                 <div class="mb-6">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        @foreach($category->publishedPosts()->limit(3)->get() as $post)
+                        @foreach($category->publishedPosts as $post)
                             <x-post-item :post="$post" :show-author="false"/>
                         @endforeach
                     </div>

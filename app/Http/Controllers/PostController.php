@@ -100,10 +100,13 @@ class PostController extends Controller
 
 
         // Show recent categories with their latest posts
-        $categories = Category::query()
-//            ->with(['posts' => function ($query) {
-//                $query->orderByDesc('published_at');
-//            }])
+        $categories = Category::with(['publishedPosts' => function ($query) {
+            $query
+                ->where('active', '=', true)
+                ->whereDate('published_at', '<=', now())
+                ->orderByDesc('published_at')
+                ->limit(3);
+        }])
             ->whereHas('posts', function ($query) {
                 $query
                     ->where('active', '=', 1)
@@ -113,7 +116,7 @@ class PostController extends Controller
             ->selectRaw('MAX(posts.published_at) as max_date')
             ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
             ->leftJoin('posts', 'posts.id', '=', 'category_post.post_id')
-            ->orderByDesc('max_date', 'asc')
+            ->orderByDesc('max_date')
             ->groupBy([
                 'categories.id',
                 'categories.title',
