@@ -35,7 +35,7 @@ class PostController extends Controller
             })
             ->where('active', '=', 1)
             ->whereDate('published_at', '<', Carbon::now())
-            ->orderByDesc('upvote_count')
+            ->orderBy('published_at', 'desc')
             ->groupBy([
                 'posts.id',
                 'posts.title',
@@ -79,7 +79,7 @@ class PostController extends Controller
                 ->select('posts.*', DB::raw('COUNT(post_views.id) as view_count'))
                 ->where('active', '=', 1)
                 ->whereDate('published_at', '<', Carbon::now())
-                ->orderByDesc('view_count')
+                ->orderBy('published_at', 'desc')
                 ->groupBy([
                     'posts.id',
                     'posts.title',
@@ -113,7 +113,7 @@ class PostController extends Controller
             ->selectRaw('MAX(posts.published_at) as max_date')
             ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
             ->leftJoin('posts', 'posts.id', '=', 'category_post.post_id')
-            ->orderByDesc('max_date')
+            ->orderBy('published_at', 'desc')
             ->groupBy([
                 'categories.id',
                 'categories.title',
