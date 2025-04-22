@@ -113,7 +113,7 @@ class PostController extends Controller
             ->selectRaw('MAX(posts.published_at) as max_date')
             ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
             ->leftJoin('posts', 'posts.id', '=', 'category_post.post_id')
-            ->orderBy('published_at', 'desc')
+//            ->orderBy('published_at', 'desc')
             ->groupBy([
                 'categories.id',
                 'categories.title',
