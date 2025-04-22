@@ -79,7 +79,7 @@ class PostController extends Controller
                 ->select('posts.*', DB::raw('COUNT(post_views.id) as view_count'))
                 ->where('active', '=', 1)
                 ->whereDate('published_at', '<', Carbon::now())
-                ->orderBy('published_at', 'desc')
+                ->orderByDesc('view_count')
                 ->groupBy([
                     'posts.id',
                     'posts.title',
