@@ -6,11 +6,17 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -46,17 +52,20 @@ class PostResource extends Resource
                         Forms\Components\RichEditor::make('body')
                             ->required()
                             ->columnSpanFull(),
-                        Forms\Components\TextInput::make('meta_title'),
-                        Forms\Components\TextInput::make('meta_description'),
-                        Forms\Components\Toggle::make('active')
+                        TextInput::make('meta_title'),
+                        TextInput::make('meta_description'),
+                        Toggle::make('active')
                             ->required(),
+                        Checkbox::make('telegram')
+                            ->label('Telegram')
+                            ->default(false),
                         Forms\Components\DateTimePicker::make('published_at')
                     ])->columnSpan(8),
 
                 Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\FileUpload::make('thumbnail'),
-                    Forms\Components\Select::make('category_id')
+                    FileUpload::make('thumbnail'),
+                    Select::make('category_id')
                         ->relationship('categories', 'title')
                         ->required()
                         ->multiple(),
@@ -74,6 +83,7 @@ class PostResource extends Resource
                 Tables\Columns\IconColumn::make('active')
                     ->sortable()
                     ->boolean(),
+                CheckboxColumn::make('telegram'),
                 Tables\Columns\TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
