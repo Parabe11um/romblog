@@ -78,7 +78,8 @@ class PostController extends Controller
                 ->leftJoin('post_views', 'posts.id', '=', 'post_views.post_id')
                 ->select('posts.*', DB::raw('COUNT(post_views.id) as view_count'))
                 ->where('active', '=', 1)
-                ->whereDate('published_at', '<=', now())                ->orderByDesc('view_count')
+                ->whereDate('published_at', '<', Carbon::now())
+                ->orderByDesc('view_count')
                 ->groupBy([
                     'posts.id',
                     'posts.title',
@@ -109,7 +110,7 @@ class PostController extends Controller
             ->whereHas('posts', function ($query) {
                 $query
                     ->where('active', '=', 1)
-                    ->whereDate('published_at', '<', Carbon::now());
+                    ->whereDate('published_at', '<=', now());
             })
             ->select('categories.*')
             ->selectRaw('MAX(posts.published_at) as max_date')
