@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         // Latest post
         $latestPost = Post::where('active', '=', 1)
-//            ->whereDate('published_at', '<', Carbon::now())
+            ->whereDate('published_at', '<=', now())
             ->orderBy('published_at', 'desc')
             ->limit(1)
             ->first();
@@ -34,7 +34,7 @@ class PostController extends Controller
                     ->orWhere('upvote_downvotes.is_upvote', '=', 1);
             })
             ->where('active', '=', 1)
-            ->whereDate('published_at', '<', Carbon::now())
+            ->whereDate('published_at', '<=', now())
             ->orderBy('published_at', 'desc')
             ->groupBy([
                 'posts.id',
@@ -78,8 +78,7 @@ class PostController extends Controller
                 ->leftJoin('post_views', 'posts.id', '=', 'post_views.post_id')
                 ->select('posts.*', DB::raw('COUNT(post_views.id) as view_count'))
                 ->where('active', '=', 1)
-                ->whereDate('published_at', '<', Carbon::now())
-                ->orderByDesc('view_count')
+                ->whereDate('published_at', '<=', now())                ->orderByDesc('view_count')
                 ->groupBy([
                     'posts.id',
                     'posts.title',
