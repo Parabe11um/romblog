@@ -6,6 +6,7 @@
     <title>{{ $metaTitle ?: 'fitlife-blog.ru' }}</title>
     <meta name="author" content="fitlife-blog.ru">
     <meta name="description" content="{{ $metaDescription }}">
+    <meta name="yandex-verification" content="b3d4e1b5780d98f2" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
