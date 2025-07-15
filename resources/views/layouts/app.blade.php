@@ -48,14 +48,21 @@
             <div class="flex max-sm:flex-col">
                 <a href="{{route('home')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">Главная</a>
                 @foreach($menuCategories as $category)
-                    <div class="relative group">
-                        <a href="{{ route('by-category', $category) }}"
+                    <div class="relative" x-data="{ open: false, timeout: null }" @mouseenter="clearTimeout(timeout); open = true" @mouseleave="timeout = setTimeout(() => open = false, 200)">
+                    <a href="{{ route('by-category', $category) }}"
                            class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2 block">
                             {{ $category->title }}
                         </a>
 
                         @if($category->children->isNotEmpty())
-                            <div class="absolute left-0 top-full mt-1 hidden group-hover:block z-50 bg-white shadow-lg rounded">
+                            <div
+                                class="absolute left-0 top-full mt-1 z-50 bg-white shadow-lg rounded"
+                                x-show="open"
+                                x-transition:enter="transition ease-out duration-200"
+                                x-transition:leave="transition ease-in duration-150"
+                                @mouseenter="clearTimeout(timeout)"
+                                @mouseleave="timeout = setTimeout(() => open = false, 200)"
+                            >
                                 @foreach($category->children as $child)
                                     <a href="{{ route('by-category', $child) }}"
                                        class="block whitespace-nowrap px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
