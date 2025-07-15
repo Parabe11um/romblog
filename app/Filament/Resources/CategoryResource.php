@@ -35,6 +35,12 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(2048),
+
+                Forms\Components\Select::make('parent_id')
+                    ->label('Родительская категория')
+                    ->options(Category::all()->pluck('title', 'id'))
+                    ->searchable()
+                    ->nullable(),
             ]);
     }
 

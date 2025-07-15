@@ -47,10 +47,26 @@
             class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-between text-sm font-bold uppercase mt-0 px-6 py-2">
             <div class="flex max-sm:flex-col">
                 <a href="{{route('home')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">Главная</a>
-                @foreach($categories as $category)
-                    <a href="{{route('by-category', $category)}}"
-                       class="hover:bg-blue-600 hover:text-white rounded sm:columns-[1-cols-sm] py-2 px-4 mx-2">{{$category->title}}</a>
+                @foreach($menuCategories as $category)
+                    <div class="relative group">
+                        <a href="{{ route('by-category', $category) }}"
+                           class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2 block">
+                            {{ $category->title }}
+                        </a>
+
+                        @if($category->children->isNotEmpty())
+                            <div class="absolute left-0 top-full mt-1 hidden group-hover:block z-50 bg-white shadow-lg rounded">
+                                @foreach($category->children as $child)
+                                    <a href="{{ route('by-category', $child) }}"
+                                       class="block whitespace-nowrap px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                                        {{ $child->title }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
                 @endforeach
+
                 <a href="{{route('about-us')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">О блоге</a>
                 <a class="px-4 py-2 mx-2 hover:bg-blue-600 hover:text-white rounded inline-flex items-center space-x-2"
                    href="https://t.me/fitlifeblog" target="_blank" rel="noopener">
