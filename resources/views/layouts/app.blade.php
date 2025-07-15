@@ -53,7 +53,7 @@
                 @endforeach
                 <a href="{{route('about-us')}}" class="hover:bg-blue-600 hover:text-white rounded py-2 px-4 mx-2">О блоге</a>
                 <a class="px-4 py-2 mx-2 hover:bg-blue-600 hover:text-white rounded inline-flex items-center space-x-2"
-                   href="https://t.me/skill2grow" target="_blank" rel="noopener">
+                   href="https://t.me/fitlifeblog" target="_blank" rel="noopener">
                     <img src="{{ asset('storage/telegram-brands-solid.svg') }}" alt="Telegram" class="h-5 w-5" />
                     <span>Мы в Телеграм</span>
                 </a>
