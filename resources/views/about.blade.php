@@ -1,5 +1,5 @@
-<x-app-layout meta-title="Fitlife-blog.ru - блог о здоровой жизни, фитнесе и спорте"
-              meta-description="Fitlife-blog.ru - блог о здоровой жизни, фитнесе и спорте">
+<x-app-layout meta-title="Fitlife-Blog: О нас — мы пишем о здоровье, питании и спорте"
+              meta-description="Fitlife-blog.ru - Наша цель — делиться проверенными знаниями и помогать вам меняться к лучшему.">
 
     <div class="container mx-auto flex flex-wrap py-6">
 
