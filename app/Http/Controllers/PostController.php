@@ -98,8 +98,16 @@ class PostController extends Controller
                 ->get();
         }
 
+// Получаем ID нужных родительских категорий
+        $parentCategoryId = Category::where('title', 'Категория')->value('id');
+        $weeksCategoryId = Category::where('title', 'Тематические недели')->value('id');
 
-        // Show recent categories with their latest posts
+// Проверяем, есть ли дочерние категории у "Тематических недель"
+        $hasWeeklyCategories = Category::where('parent_id', $weeksCategoryId)->exists();
+
+// Определяем, какие категории выводить
+        $mainParentId = $hasWeeklyCategories ? $weeksCategoryId : $parentCategoryId;
+
         $categories = Category::with(['publishedPosts' => function ($query) {
             $query
                 ->where('active', '=', true)
@@ -107,6 +115,7 @@ class PostController extends Controller
                 ->orderByDesc('published_at')
                 ->limit(3);
         }])
+            ->where('parent_id', $mainParentId)
             ->whereHas('posts', function ($query) {
                 $query
                     ->where('active', '=', 1)
