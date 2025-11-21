@@ -200,15 +200,21 @@ class PostController extends Controller
         $q = $request->get('q');
 
         $posts = Post::query()
-            ->where('active', '=', true)
-            ->whereDate('published_at', '<=', Carbon::now())
-            ->orderBy('published_at', 'desc')
+            ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+            ->join('categories', 'categories.id', '=', 'category_post.category_id')
+            ->where('posts.active', true)
+            ->whereDate('posts.published_at', '<=', Carbon::now())
             ->where(function ($query) use ($q) {
-                $query->where('title', 'like', "%$q%")
-                    ->orWhere('body', 'like', "%$q%");
+                $query->where('posts.title', 'like', "%$q%")
+                    ->orWhere('posts.body', 'like', "%$q%")
+                    ->orWhere('categories.title', 'like', "%$q%");
             })
+            ->orderBy('posts.published_at', 'desc')
+            ->select('posts.*')
+            ->distinct()
             ->paginate(10);
 
         return view('post.search', compact('posts'));
     }
+
 }
