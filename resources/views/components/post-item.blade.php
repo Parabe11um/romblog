@@ -36,10 +36,6 @@
             @endforeach
         </div>
 
-        <a href="{{route('view', $post)}}" class="uppercase text-gray-800 hover:text-black mt-auto">
-            Читать <i class="fas fa-arrow-right"></i>
-        </a>
-
         <p href="#" class="text-sm pb-3">
             Опубликовано {{$post->getFormattedDate()}}
         </p>
