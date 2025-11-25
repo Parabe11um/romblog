@@ -6,23 +6,32 @@
     </a>
     <div class="bg-white flex flex-col justify-start p-6">
         <div class="flex gap-4">
+
             @php
-                // Убираем повтор
-                $otherCategories = $post->categories->filter(fn($cat) => $mainCategory && $cat->id !== $mainCategory->id);
+                // Если на странице категории — передан mainCategory
+                if ($mainCategory) {
+                    // Показываем сначала основную категорию
+                    echo '<a href="'.route('by-category', $mainCategory->slug).'"
+                             class="text-blue-700 text-sm font-bold uppercase pb-4">'
+                            .$mainCategory->title.
+                         '</a>';
+
+                    // Остальные категории этого поста, исключая основную
+                    $categories = $post->categories->where('id', '!=', $mainCategory->id);
+                } else {
+                    // Если mainCategory НЕ передан — просто выводим все категории
+                    $categories = $post->categories;
+                }
             @endphp
 
-            @if($mainCategory)
-                <a href="{{ route('by-category', $mainCategory->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
-                    {{ $mainCategory->title }}
-                </a>
-            @endif
-
-            @foreach($otherCategories as $category)
-                <a href="{{ route('by-category', $category->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
+            @foreach($categories as $category)
+                <a href="{{ route('by-category', $category->slug) }}"
+                   class="text-blue-700 text-sm font-bold uppercase pb-4">
                     {{ $category->title }}
                 </a>
             @endforeach
         </div>
+
         <a href="{{route('view', $post)}}" class="text-3xl font-bold hover:text-gray-700 pb-4">
             {{$post->title}}
         </a>
