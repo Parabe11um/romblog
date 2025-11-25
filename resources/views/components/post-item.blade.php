@@ -12,7 +12,7 @@
             @endphp
 
             @if($mainCategory)
-                <a href="{{ route('category', $mainCategory->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
+                <a href="{{ route('by-category', $mainCategory->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
                     {{ $mainCategory->title }}
                 </a>
             @endif
