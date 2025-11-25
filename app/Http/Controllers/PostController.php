@@ -185,15 +185,16 @@ class PostController extends Controller
     public function byCategory(Category $category)
     {
         $posts = Post::query()
-            ->join('category_post', 'posts.id', '=', 'category_post.post_id')
-            ->where('category_post.category_id', '=', $category->id)
-            ->where('active', '=', true)
+            ->with('categories')
+            ->whereHas('categories', fn($q) => $q->where('categories.id', $category->id))
+            ->where('active', true)
             ->whereDate('published_at', '<=', Carbon::now())
             ->orderBy('published_at', 'desc')
             ->paginate(10);
 
         return view('post.index', compact('posts', 'category'));
     }
+
 
     public function search(Request $request)
     {
