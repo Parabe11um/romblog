@@ -200,6 +200,7 @@ class PostController extends Controller
         $q = $request->get('q');
 
         $posts = Post::query()
+            ->with('categories')
             ->join('category_post', 'posts.id', '=', 'category_post.post_id')
             ->join('categories', 'categories.id', '=', 'category_post.category_id')
             ->where('posts.active', true)
