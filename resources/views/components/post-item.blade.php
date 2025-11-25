@@ -8,7 +8,7 @@
     <a href="{{route('view', $post)}}" class="hover:opacity-75">
         <img src="{{$post->getThumbnail()}}" alt="{{$post->title}}" class="aspect-[4/3] p-3 w-full object-contain">
     </a>
-    <div class="bg-white flex flex-col justify-start p-6">
+    <div class="bg-white flex flex-col p-6 h-full">
         <div class="flex gap-4">
 
             @php
@@ -36,8 +36,8 @@
             @endforeach
         </div>
 
-        <a href="{{route('view', $post)}}" class="text-3xl font-bold hover:text-gray-700 pb-4">
-            {{$post->title}}
+        <a href="{{route('view', $post)}}" class="uppercase text-gray-800 hover:text-black mt-auto">
+            Читать <i class="fas fa-arrow-right"></i>
         </a>
 
         <p href="#" class="text-sm pb-3">
