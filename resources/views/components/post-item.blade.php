@@ -1,4 +1,8 @@
 @props(['post', 'mainCategory' => null])
+
+@php
+    $post->loadMissing('categories');
+@endphp
 <article class="bg-white post-item flex flex-col shadow my-4">
     <!-- Article Image -->
     <a href="{{route('view', $post)}}" class="hover:opacity-75">
