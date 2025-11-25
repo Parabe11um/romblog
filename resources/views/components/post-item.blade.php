@@ -1,3 +1,4 @@
+@props(['post', 'mainCategory' => null])
 <article class="bg-white post-item flex flex-col shadow my-4">
     <!-- Article Image -->
     <a href="{{route('view', $post)}}" class="hover:opacity-75">
@@ -5,9 +6,20 @@
     </a>
     <div class="bg-white flex flex-col justify-start p-6">
         <div class="flex gap-4">
-            @foreach($post->categories as $category)
-                <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">
-                    {{$category->title}}
+            @php
+                // Убираем повтор
+                $otherCategories = $post->categories->filter(fn($cat) => $mainCategory && $cat->id !== $mainCategory->id);
+            @endphp
+
+            @if($mainCategory)
+                <a href="{{ route('category', $mainCategory->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
+                    {{ $mainCategory->title }}
+                </a>
+            @endif
+
+            @foreach($otherCategories as $category)
+                <a href="{{ route('category', $category->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
+                    {{ $category->title }}
                 </a>
             @endforeach
         </div>
