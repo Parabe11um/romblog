@@ -18,7 +18,7 @@
             @endif
 
             @foreach($otherCategories as $category)
-                <a href="{{ route('category', $category->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
+                <a href="{{ route('by-category', $category->slug) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">
                     {{ $category->title }}
                 </a>
             @endforeach
