@@ -17,7 +17,7 @@
     <a href="{{ route('view', $post) }}" class="hover:opacity-75">
         <img src="{{ $post->getThumbnail() }}"
              alt="{{ $post->title }}"
-             class="aspect-[4/3] p-3 w-full object-contain">
+             class="p-3 w-full object-contain">
     </a>
 
     <!-- Content -->
