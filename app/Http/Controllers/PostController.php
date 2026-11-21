@@ -75,25 +75,16 @@ class PostController extends Controller
         } // Not authorized - Popular posts based on views
         else {
             $recommendedPosts = Post::query()
-                ->leftJoin('post_views', 'posts.id', '=', 'post_views.post_id')
-                ->select('posts.*', DB::raw('COUNT(post_views.id) as view_count'))
-                ->where('active', '=', 1)
-                ->whereDate('published_at', '<', Carbon::now())
+                ->select('posts.*')
+                ->selectSub(function ($query) {
+                    $query->from('post_views')
+                        ->selectRaw('COUNT(*)')
+                        ->whereColumn('post_views.post_id', 'posts.id');
+                }, 'view_count')
+                ->where('posts.active', '=', 1)
+                ->whereDate('posts.published_at', '<', Carbon::now())
                 ->orderByDesc('view_count')
-                ->groupBy([
-                    'posts.id',
-                    'posts.title',
-                    'posts.slug',
-                    'posts.thumbnail',
-                    'posts.body',
-                    'posts.active',
-                    'posts.published_at',
-                    'posts.user_id',
-                    'posts.created_at',
-                    'posts.updated_at',
-                    'posts.meta_title',
-                    'posts.meta_description',
-                ])
+                ->orderBy('posts.id')
                 ->limit(3)
                 ->get();
         }
