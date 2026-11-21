@@ -1,0 +1,4 @@
+# Deny execution and HTTP access to PHP-like files in uploads.
+<FilesMatch "(?i)\.(php[0-9]*|phtml|pht|phar|phps)(\.|$)">
+    Require all denied
+</FilesMatch>

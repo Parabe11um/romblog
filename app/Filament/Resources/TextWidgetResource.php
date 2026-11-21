@@ -29,7 +29,9 @@ class TextWidgetResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
-                    ->image(),
+                    ->image()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(5120),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(2048),
