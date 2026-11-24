@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TextWidgetResource\Pages;
 use App\Filament\Resources\TextWidgetResource\RelationManagers;
 use App\Models\TextWidget;
+use App\Filament\Forms\Components\SecureFileUpload;
+use App\Filament\Forms\Components\SecureRichEditor;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,14 +30,14 @@ class TextWidgetResource extends Resource
                 Forms\Components\TextInput::make('key')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
+                SecureFileUpload::make('image')
                     ->image()
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(5120),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(2048),
-                Forms\Components\RichEditor::make('content')
+                SecureRichEditor::make('content')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('active')
                     ->required(),

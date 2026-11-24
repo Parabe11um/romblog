@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Illuminate\Support\Facades\RateLimiter;
 
 class UpvoteDownvote extends Component
 {
@@ -45,12 +46,31 @@ class UpvoteDownvote extends Component
     {
         /** @var \App\Models\User $user */
         $user = request()->user();
-        if (!$user) {
-            return $this->redirect('login');
-        }
-        if (!$user->hasVerifiedEmail()) {
-            return $this->redirect(route('verification.notice'));
-        }
+        abort_unless(
+            $user && $user->hasVerifiedEmail(),
+            403
+        );
+
+        abort_unless(is_bool($upvote), 422);
+
+        $post = $this->post->fresh();
+
+        abort_unless(
+            $post
+                && $post->active
+                && $post->published_at
+                && $post->published_at <= now(),
+            404
+        );
+
+        $key = 'post-vote:' . $user->id;
+
+        abort_if(
+            RateLimiter::tooManyAttempts($key, 30),
+            429
+        );
+
+        RateLimiter::hit($key, 60);
 
         $model = \App\Models\UpvoteDownvote::where('post_id', '=', $this->post->id)->where('user_id', '=', $user->id)->first();
 

@@ -15,7 +15,11 @@
             <textarea x-ref="input" wire:model.live="comment" @click="focused = true"
                       class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       :rows="isEdit || focused ? '2' : '1'"
-                      placeholder="Оставить комментарий"></textarea>
+                      maxlength="3000"
+                       placeholder="Оставить комментарий"></textarea>
+            @error('comment')
+                <p class="text-sm text-red-600">{{ $message }}</p>
+            @enderror
         </div>
         <div :class="isEdit || focused ? '' : 'hidden'">
             <button wire:click="createComment" type="submit"

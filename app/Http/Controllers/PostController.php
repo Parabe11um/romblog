@@ -189,7 +189,13 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        $q = $request->get('q');
+        $q = $request->query()['q'] ?? '';
+
+        abort_unless(
+            is_string($q) && mb_strlen($q) <= 200,
+            422,
+            'Invalid search query.'
+        );
 
         $posts = Post::query()
             ->with('categories')
@@ -207,7 +213,7 @@ class PostController extends Controller
             ->distinct()
             ->paginate(10);
 
-        return view('post.search', compact('posts'));
+        return view('post.search', compact('posts', 'q'));
     }
 
 }

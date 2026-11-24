@@ -16,7 +16,7 @@
                         {{$widget ? $widget->title : ''}}
                     </h1>
                     <div>
-                        {!! $widget ? $widget->content : '' !!}
+                        <x-safe-rich-text :html="$widget?->content" />
                     </div>
                 </div>
             </article>

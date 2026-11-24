@@ -33,13 +33,13 @@ class CommentItem extends Component
     {
 
         $user = auth()->user();
-        if (!$user) {
-            return $this->redirect('/login');
-        }
+        abort_unless(
+            $user
+                && (int) $this->comment->user_id === (int) $user->id,
+            403
+        );
 
-        if ($this->comment->user_id != $user->id){
-            return response('У вас нет прав на это действие', 403);
-        }
+        abort_if($this->comment->comments()->exists(), 409);
 
         $id = $this->comment->id;
 
@@ -49,6 +49,12 @@ class CommentItem extends Component
 
     public function startCommentEdit()
     {
+        abort_unless(
+            auth()->check()
+                && (int) auth()->id() === (int) $this->comment->user_id,
+            403
+        );
+
         $this->editing = true;
         $this->replying = false;
     }

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Component;
+use Illuminate\Support\Facades\RateLimiter;
 
 class CommentCreate extends Component
 {
@@ -34,15 +35,51 @@ class CommentCreate extends Component
     public function createComment()
     {
         $user = auth()->user();
-        if (!$user) {
-            return $this->redirect('/login');
+        abort_unless($user, 403);
+
+        $post = $this->post->fresh();
+
+        abort_unless(
+            $post
+                && $post->active
+                && $post->published_at
+                && $post->published_at <= now(),
+            404
+        );
+
+        if ($this->commentModel) {
+            abort_unless(
+                (int) $this->commentModel->user_id === (int) $user->id
+                    && (int) $this->commentModel->post_id === (int) $post->id,
+                403
+            );
         }
+
+        if ($this->parentComment) {
+            abort_unless(
+                (int) $this->parentComment->post_id === (int) $post->id,
+                422
+            );
+        }
+
+        $this->comment = trim($this->comment);
+
+        $this->validate([
+            'comment' => ['required', 'string', 'max:3000'],
+        ]);
+
+        $key = 'comment-write:' . $user->id;
+
+        abort_if(
+            RateLimiter::tooManyAttempts($key, 10),
+            429
+        );
+
+        RateLimiter::hit($key, 60);
 
         if ($this->commentModel) {
 
-            if ($this->commentModel->user_id != $user->id){
-                return response('У вас нет прав на это действие', 403);
-            }
+
 
             $this->commentModel->comment = $this->comment;
             $this->commentModel->save();
