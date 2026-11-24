@@ -15,7 +15,7 @@
             - <span class="text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
         </div>
         @if($editing)
-            <livewire:comment-create :comment-model="$comment"/>
+            <livewire:comment-create :post="$comment->post" :comment-model="$comment"/>
         @else
             <div class="text-gray-700">
                 {{$comment->comment}}

@@ -24,7 +24,7 @@
                             {{$post->getFormattedDate()}}
                         </p>
                         <div>
-                            {!! $post->body !!}
+                            <x-safe-rich-text :html="$post->body" />
                         </div>
                         <livewire:upvote-downvote :post="$post"/>
                     </div>

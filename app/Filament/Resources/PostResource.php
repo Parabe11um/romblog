@@ -7,7 +7,8 @@ use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Forms\Components\SecureFileUpload;
+use App\Filament\Forms\Components\SecureRichEditor;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -49,7 +50,7 @@ class PostResource extends Resource
                             ]),
 
 
-                        Forms\Components\RichEditor::make('body')
+                        SecureRichEditor::make('body')
                             ->required()
                             ->columnSpanFull(),
                         TextInput::make('meta_title'),
@@ -64,7 +65,7 @@ class PostResource extends Resource
 
                 Forms\Components\Card::make()
                 ->schema([
-                    FileUpload::make('thumbnail')
+                    SecureFileUpload::make('thumbnail')
                         ->image()
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                         ->maxSize(5120),
